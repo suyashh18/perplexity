@@ -12,7 +12,7 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "22": "^0.0.0",
+    
     "@langchain/google-genai": "^2.1.31",
     "@mistralai/mistralai": "^2.3.0",
     "@tavily/core": "^0.7.6",
