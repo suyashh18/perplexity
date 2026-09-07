@@ -1,10 +1,11 @@
 import jwt from 'jsonwebtoken'
 
 export async function identifyUser(req, res, next) {
-    console.log("COOKIE HEADER:", req.headers.cookie)
-    console.log("PARSED COOKIES:", req.cookies)
+    console.log("HAS COOKIE HEADER:", !!req.headers.cookie)
+    console.log("COOKIE KEYS:", Object.keys(req.cookies || {}))
+    console.log("TOKEN EXISTS:", !!req.cookies?.token)
 
-    const token = req.cookies.token
+    const token = req.cookies?.token
 
     if (!token) {
         return res.status(401).json({
@@ -19,9 +20,8 @@ export async function identifyUser(req, res, next) {
 
         req.user = decoded
         next()
-
     } catch (err) {
-        console.log("JWT ERROR:", err)
+        console.log("JWT ERROR:", err.message)
 
         return res.status(401).json({
             message: "Unauthorized",
